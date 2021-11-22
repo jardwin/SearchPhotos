@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="text-center">Recherche d'images Flickr</h1>
+  <div class="form-group">
+    <input type="search" [formControl]="searchForm.controls.title" class="form-control"  placeholder="Search images">
+    <br>
+    <input type="checkbox" id="nsfw" [formControl]="searchForm.controls.nsfw" value="nsfw" checked>
+    <label for="nsfw">  NSFW ?</label>
+    <br>
+    <input type="date" id="dateMin" [formControl]="searchForm.controls.dateMin">
+    <label for="dateMin">  dateMin upload ?</label>
+    <br>
+    <input type="date" id="dateMax" [formControl]="searchForm.controls.dateMax">
+    <label for="dateMax">  dateMax upload ?</label>
+    <br>
+    <button type="submit" (click)="submitSearch()">Recherche</button>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
+      <div class="card">
+        <a href="{{image.url}}_b.jpg">
+          <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+  </div>
+</div>
