@@ -10,6 +10,10 @@ import { FlickrService } from '../services/flickr.service';
 export class SearchImagesComponent implements OnInit {
   images = [];
   keyword: string;
+  nsfw: boolean;
+  dateMin: Date;
+  dateMax: Date;
+  gallery: boolean;
 
   constructor(private flickrService: FlickrService) { }
 
@@ -21,23 +25,30 @@ export class SearchImagesComponent implements OnInit {
     nsfw: new FormControl(),
     dateMin: new FormControl(),
     dateMax: new FormControl(),
+    gallery: new FormControl(),
   });
   
   submitSearch() {
     console.log(this.searchForm.value);
-        this.keyword = this.searchForm.value.title.toLowerCase();
+    this.keyword = this.searchForm.value.title.toLowerCase();
+    this.nsfw = this.searchForm.value.nsfw;
+    this.dateMax = this.searchForm.value.dateMax;
+    this.dateMin = this.searchForm.value.dateMin;
+    this.gallery = this.searchForm.value.gallery;
+    console.log(this.keyword + "//" + this.nsfw + "//" + this.dateMax + "//" + this.dateMin + "//" + this.gallery);
     if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.search_keyword(this.keyword)
+      this.flickrService.search_keyword(this.keyword, this.nsfw, this.dateMax, this.dateMin, this.gallery)
       .toPromise()
       .then(res => {
         this.images = res;
+        console.log(this.images);
       });
     }
     }
 
   onScroll() {
     if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.search_keyword(this.keyword)
+      this.flickrService.search_keyword(this.keyword, this.nsfw, this.dateMax, this.dateMin, this.gallery)
       .toPromise()
       .then(res => {
         this.images = this.images.concat(res);
