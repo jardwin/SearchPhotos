@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Criteria } from '../search-criteria/search-criteria.component';
 
 export interface FlickrPhoto {
   farm: string;
@@ -28,21 +29,21 @@ export class FlickrService {
 
   constructor(private http: HttpClient) { }
 
-  search_keyword(keyword: string, nsfw: boolean, dateMax: Date, dateMin: Date, gallery: boolean) {
-    if (this.prevKeyword === keyword) {
+  search_keyword(criteria: Criteria) {
+    if (this.prevKeyword === criteria.keyword) {
       this.currPage++;
     } else {
       this.currPage = 1;
     }
-    if (nsfw == true) {
+    if (criteria.nsfw == true) {
       this.safe = 3;
     }
     else {
       this.safe = 1;
     }
-    this.prevKeyword = keyword;
+    this.prevKeyword = criteria.keyword;
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${dateMin}&max_upload_date=${dateMax}&in_gallery=${gallery}`;
+    const params = `api_key=${environment.flickr.key}&text=${criteria.keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${criteria.dateMin}&max_upload_date=${criteria.dateMax}&in_gallery=${criteria.gallery}`;
 
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];

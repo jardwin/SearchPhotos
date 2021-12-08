@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { FlickrService } from '../services/flickr.service';
 
 @Component({
@@ -9,51 +8,23 @@ import { FlickrService } from '../services/flickr.service';
 })
 export class SearchImagesComponent implements OnInit {
   images = [];
-  keyword: string;
-  nsfw: boolean;
-  dateMin: Date;
-  dateMax: Date;
-  gallery: boolean;
-
+  isScroll = false;
   constructor(private flickrService: FlickrService) { }
 
   ngOnInit() {
   }
 
-  searchForm = new FormGroup({
-    title: new FormControl(),
-    nsfw: new FormControl(),
-    dateMin: new FormControl(),
-    dateMax: new FormControl(),
-    gallery: new FormControl(),
-  });
-  
-  submitSearch() {
-    console.log(this.searchForm.value);
-    this.keyword = this.searchForm.value.title.toLowerCase();
-    this.nsfw = this.searchForm.value.nsfw;
-    this.dateMax = this.searchForm.value.dateMax;
-    this.dateMin = this.searchForm.value.dateMin;
-    this.gallery = this.searchForm.value.gallery;
-    console.log(this.keyword + "//" + this.nsfw + "//" + this.dateMax + "//" + this.dateMin + "//" + this.gallery);
-    if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.search_keyword(this.keyword, this.nsfw, this.dateMax, this.dateMin, this.gallery)
-      .toPromise()
-      .then(res => {
-        this.images = res;
-        console.log(this.images);
-      });
-    }
-    }
+  onSearch(result){
+    this.images = result;
+  }
 
-  onScroll() {
-    if (this.keyword && this.keyword.length > 0) {
-      this.flickrService.search_keyword(this.keyword, this.nsfw, this.dateMax, this.dateMin, this.gallery)
-      .toPromise()
-      .then(res => {
-        this.images = this.images.concat(res);
-      });
-    }
+  onScroll(){
+    this.isScroll=true;
+  }
+
+  GetNext(result) {
+    this.images = this.images.concat(result);
+    this.isScroll=false;
   }
 
 }

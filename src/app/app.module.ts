@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { SearchImagesComponent } from './search-images/search-images.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SearchCriteriaComponent } from './search-criteria/search-criteria.component';
+import { ImagesListComponent } from './images-list/images-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchImagesComponent
+    SearchImagesComponent,
+    SearchCriteriaComponent,
+    ImagesListComponent
   ],
   imports: [
     BrowserModule,
