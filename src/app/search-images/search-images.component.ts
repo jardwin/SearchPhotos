@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlickrService } from '../services/flickr.service';
+import { OurImage } from '../services/flickr.service';
 
 @Component({
   selector: 'app-search-images',
@@ -7,9 +7,9 @@ import { FlickrService } from '../services/flickr.service';
   styleUrls: ['./search-images.component.css']
 })
 export class SearchImagesComponent implements OnInit {
-  images = [];
+  images:OurImage[] = [];
   isScroll = false;
-  constructor(private flickrService: FlickrService) { }
+  constructor() { }
 
   ngOnInit() {
   }

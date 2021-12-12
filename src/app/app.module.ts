@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SearchCriteriaComponent } from './search-criteria/search-criteria.component';
 import { ImagesListComponent } from './images-list/images-list.component';
+import { ImageDisplayComponent } from './image-display/image-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchImagesComponent,
     SearchCriteriaComponent,
-    ImagesListComponent
+    ImagesListComponent,
+    ImageDisplayComponent
   ],
   imports: [
     BrowserModule,

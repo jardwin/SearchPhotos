@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { OurImage } from '../services/flickr.service';
 
 @Component({
   selector: 'app-images-list',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImagesListComponent implements OnInit {
   @Input()
-  images: string[] = [];
+  images:OurImage[] = [];
 
   constructor() { }
 

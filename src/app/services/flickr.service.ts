@@ -13,6 +13,15 @@ export interface FlickrPhoto {
   owner: string;
 }
 
+export interface OurImage {
+  urlLink: string;
+  urlImg:string;
+  title: string;
+  owner: string;
+  secret: string;
+  id: string;
+}
+
 export interface FlickrOutput {
   photos: {
     photo: FlickrPhoto[];
@@ -48,10 +57,9 @@ export class FlickrService {
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];
       res.photos.photo.forEach((ph: FlickrPhoto) => {
-        const test = this.search_photos_info(ph.id);
-        console.log(test);
         const photoObj = {
-          url: `https://farm${ph.farm}.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}`,
+          urlLink: `https://farm${ph.farm}.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}_b.jpg`,
+          urlImg: `https://farm${ph.farm}.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}_m.jpg`,
           title: ph.title,
           owner: ph.owner,
           secret: ph.secret,
@@ -64,10 +72,9 @@ export class FlickrService {
   }
 
   search_photos_info(id) {
-    //console.log('ok');
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&';
     const params = `api_key=${environment.flickr.key}&photo_id=${id}`;
 
-    return this.http.get(url + params)
+    return this.http.get(url + params, {responseType: "text" });
   }
 }

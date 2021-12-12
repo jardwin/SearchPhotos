@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FlickrService } from '../services/flickr.service';
+import { FlickrService, OurImage } from '../services/flickr.service';
 
 @Component({
   selector: 'app-search-criteria',
@@ -9,8 +9,8 @@ import { FlickrService } from '../services/flickr.service';
 })
 export class SearchCriteriaComponent implements OnInit, OnChanges {
   criteria: Criteria = { keyword: "", dateMax: null, dateMin: null, gallery: false, nsfw: false };
-  @Output() onSearch = new EventEmitter<string[]>();
-  @Output() onNeedNext = new EventEmitter<string[]>();
+  @Output() onSearch = new EventEmitter<OurImage[]>();
+  @Output() onNeedNext = new EventEmitter<OurImage[]>();
 
   constructor(private flickrService: FlickrService) { }
 
