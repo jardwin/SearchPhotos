@@ -28,7 +28,7 @@ export class FlickrService {
 
   constructor(private http: HttpClient) { }
 
-  search_keyword(keyword: string, nsfw: boolean, dateMax: Date, dateMin: Date, gallery: boolean) {
+  search_keyword(keyword: string, nsfw: boolean, dateMax: Date, dateMin: Date, gallery: boolean, tags: string) {
     if (this.prevKeyword === keyword) {
       this.currPage++;
     } else {
@@ -42,7 +42,7 @@ export class FlickrService {
     }
     this.prevKeyword = keyword;
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${dateMin}&max_upload_date=${dateMax}&in_gallery=${gallery}`;
+    const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${dateMin}&max_upload_date=${dateMax}&in_gallery=${gallery}&tags=${tags}`;
 
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];

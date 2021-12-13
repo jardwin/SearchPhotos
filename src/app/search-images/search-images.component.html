@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="text-center">Recherche d'images Flickr</h1>
   <div class="form-group">
-    <input type="search" [formControl]="searchForm.controls.title" class="form-control"  placeholder="Search images">
+    <input type="search" [formControl]="searchForm.controls.title" class="form-control"  placeholder="Rechercher une image">
     <br>
     <input type="checkbox" id="nsfw" [formControl]="searchForm.controls.nsfw" value="nsfw" checked>
     <label for="nsfw">  Recherche Safe ?</label>
@@ -14,6 +14,8 @@
     <br>
     <input type="date" id="dateMax" [formControl]="searchForm.controls.dateMax">
     <label for="dateMax">  dateMax upload ?</label>
+    <br>
+    <input type="search" [formControl]="searchForm.controls.tags" class="form-control" placeholder="Liste de tags (Optionnel)">
     <br>
     <button type="submit" (click)="submitSearch()">Recherche</button>
   </div>
