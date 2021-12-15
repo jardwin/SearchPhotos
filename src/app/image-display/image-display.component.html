@@ -1,8 +1,4 @@
-<div class="card" (mouseenter) ="mouseHover()"  (mouseleave)="mouseOut()" [class.p-1]="onHover">
-    <a href="{{image.urlLink}}">
+<div class="card" (click)="info()">
         <img src="{{image.urlImg}}" [title]="image.title">
-    </a>
 </div>
-<div *ngIf="onHover">
-    <p>{{photoInfo.title}}</p>
-</div>
+

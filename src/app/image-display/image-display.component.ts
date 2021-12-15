@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OurImage, FlickrService } from '../services/flickr.service';
+import { FlickrPhoto, FlickrService } from '../services/flickr.service';
 
 @Component({
   selector: 'app-image-display',
@@ -11,7 +11,7 @@ import { OurImage, FlickrService } from '../services/flickr.service';
 export class ImageDisplayComponent implements OnInit {
 
   @Input()
-  image :OurImage ;
+  image :FlickrPhoto ;
 
   onHover: boolean = false;
   photoInfo;
@@ -30,6 +30,24 @@ export class ImageDisplayComponent implements OnInit {
   mouseOut(){
     this.onHover = false;
     
+  }
+
+  info() {
+    console.log(this.image);
+    alert(
+      "Auteur : " + this.image.ownername +
+      ", Titre : " + this.image.title +
+      ", Description : " + JSON.stringify(this.image.description) +
+      ", Date : " + this.image.datetaken +
+      ", Date upload : " + this.image.dateupload +
+      ", Hauteur : " + this.image.height_q +
+      ", Largeur : " + this.image.width_q +
+      ", Photo publique : " + this.image.ispublic +
+      ", Dernière update : " + this.image.lastupdate +
+      ", Latitude : " + this.image.latitude +
+      ", Longitude : " + this.image.longitude +
+      ", Tags : " + this.image.tags 
+    );
   }
 
 }
