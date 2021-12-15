@@ -8,7 +8,7 @@ import { FlickrService, OurImage } from '../services/flickr.service';
   styleUrls: ['./search-criteria.component.css']
 })
 export class SearchCriteriaComponent implements OnInit, OnChanges {
-  criteria: Criteria = { keyword: "", dateMax: null, dateMin: null, gallery: false, nsfw: false };
+  criteria: Criteria = { keyword: "", dateMax: null, dateMin: null, gallery: false, nsfw: false, tags:"" };
   @Output() onSearch = new EventEmitter<OurImage[]>();
   @Output() onNeedNext = new EventEmitter<OurImage[]>();
 
@@ -32,6 +32,7 @@ export class SearchCriteriaComponent implements OnInit, OnChanges {
     this.criteria.dateMax = this.searchForm.value.dateMax;
     this.criteria.dateMin = this.searchForm.value.dateMin;
     this.criteria.gallery = this.searchForm.value.gallery;
+    this.criteria.tags = this.searchForm.value.tags;
     console.log(this.criteria.keyword + "//" + this.criteria.nsfw + "//" + this.criteria.dateMax + "//" + this.criteria.dateMin + "//" + this.criteria.gallery);
     if (this.criteria.keyword && this.criteria.keyword.length > 0) {
       this.flickrService.search_keyword(this.criteria)
@@ -72,4 +73,5 @@ export interface Criteria {
   dateMin: Date;
   dateMax: Date;
   gallery: boolean;
+  tags: string;
 }

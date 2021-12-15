@@ -52,7 +52,7 @@ export class FlickrService {
     }
     this.prevKeyword = criteria.keyword;
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const params = `api_key=${environment.flickr.key}&text=${criteria.keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${criteria.dateMin}&max_upload_date=${criteria.dateMax}&in_gallery=${criteria.gallery}`;
+    const params = `api_key=${environment.flickr.key}&text=${criteria.keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${criteria.dateMin}&max_upload_date=${criteria.dateMax}&in_gallery=${criteria.gallery}&tags=${criteria.tags}`;
 
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];
