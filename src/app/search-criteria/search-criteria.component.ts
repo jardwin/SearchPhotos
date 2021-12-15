@@ -20,6 +20,7 @@ export class SearchCriteriaComponent implements OnInit, OnChanges {
     dateMin: new FormControl(),
     dateMax: new FormControl(),
     gallery: new FormControl(),
+    tags: new FormControl()
   });
 
   @Input()

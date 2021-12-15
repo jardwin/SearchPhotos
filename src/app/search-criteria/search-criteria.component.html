@@ -13,5 +13,7 @@
     <input type="date" id="dateMax" [formControl]="searchForm.controls.dateMax">
     <label for="dateMax"> dateMax upload ?</label>
     <br>
+    <input type="search" [formControl]="searchForm.controls.tags" class="form-control" placeholder="Liste de tags (Optionnel)">
+    <br>
     <button type="submit" (click)="submitSearch()">Recherche</button>
 </div>
