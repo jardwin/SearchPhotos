@@ -22,6 +22,7 @@ export interface FlickrPhoto {
   longitude: number;
   ownername: string;
   tags: string;
+  displayDetail: boolean;
 }
 
 export interface OurImage {
@@ -87,6 +88,7 @@ export class FlickrService {
           longitude: ph.longitude,
           ownername: ph.ownername,
           tags: ph.tags,
+          displayDetail: false
         };
         urlArr.push(photoObj);
       });

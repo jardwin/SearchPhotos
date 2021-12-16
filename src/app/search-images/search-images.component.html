@@ -1,11 +1,12 @@
 <div class="container">
   <h1 class="text-center">Recherche d'images Flickr</h1>
-<app-search-criteria [IsNeedNext]="isScroll" (onNeedNext)="GetNext($event)"
-    (onSearch)="onSearch($event)">
-    </app-search-criteria>
-    <app-images-list [images]="images"></app-images-list>
-
-    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-      (scrolled)="onScroll()">
-    </div>
+  <button class="btn btn-primary mx-5 mb-2" (click)="isSlider = false">List</button>
+  <button class="btn btn-primary mx-5 mb-2" (click)="isSlider = true">Slider</button>
+  <app-search-criteria [IsNeedNext]="isScroll" (onNeedNext)="GetNext($event)" (onSearch)="onSearch($event)">
+  </app-search-criteria>
+  <app-images-list [images]="images" *ngIf="!isSlider"></app-images-list>
+  <app-image-slider [images]="images" *ngIf="isSlider"></app-image-slider>
+  <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+  </div>
 </div>

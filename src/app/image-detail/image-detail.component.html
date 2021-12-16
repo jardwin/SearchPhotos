@@ -1,0 +1,12 @@
+<div *ngIf="this.image.displayDetail" class="alert alert-primary my-2" role="alert">
+    <button class="btn btn-primary" (click)="this.image.displayDetail = false">Fermer</button>
+    <a [href]="this.image.urlLink" class="btn btn-secondary ml-3" target="blank">Ouvrir en grand</a>
+    <br/>
+    <b>Auteur :</b> {{this.image.ownername}} <br/>
+    <b>Titre :</b> {{this.image.title}} <br/>
+    <b>Description :</b> <span [innerHTML]="this.image.description._content"></span> <br/>
+    <b>Date :</b> {{this.image.datetaken}} <br/>
+    <b>Dimention :</b>{{this.image.height_q}} X {{this.image.width_q}}<br/>
+    <b>Coordonée :</b> {{this.image.latitude}} - {{this.image.longitude}} <br/>
+    <b>Tags :</b> {{this.image.tags}}
+</div>

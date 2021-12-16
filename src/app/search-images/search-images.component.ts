@@ -9,6 +9,7 @@ import { OurImage } from '../services/flickr.service';
 export class SearchImagesComponent implements OnInit {
   images:OurImage[] = [];
   isScroll = false;
+  isSlider = false;
   constructor() { }
 
   ngOnInit() {
