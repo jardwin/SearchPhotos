@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OurImage, FlickrService } from '../services/flickr.service';
+import { FlickrPhoto, FlickrService } from '../services/flickr.service';
 
 @Component({
   selector: 'app-image-display',
@@ -11,25 +11,15 @@ import { OurImage, FlickrService } from '../services/flickr.service';
 export class ImageDisplayComponent implements OnInit {
 
   @Input()
-  image :OurImage ;
-
-  onHover: boolean = false;
-  photoInfo;
+  image :FlickrPhoto ;
 
   constructor(private flickr: FlickrService) { }
 
   ngOnInit(): void {
   }
-
-  mouseHover(){
-    //!this.photoInfo && this.flickr.search_photos_info(this.image.id).subscribe((res) => {
-      //this.onHover = true;
-  //});
-  }
-
-  mouseOut(){
-    this.onHover = false;
-    
+  
+  info() {
+    this.image.displayDetail = !this.image.displayDetail;
   }
 
 }

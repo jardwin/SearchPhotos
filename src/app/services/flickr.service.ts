@@ -11,6 +11,18 @@ export interface FlickrPhoto {
   server: string;
   title: string;
   owner: string;
+  description: Object;
+  datetaken: Date;
+  dateupload: number;
+  height_q: number;
+  width_q: number;
+  ispublic: number;
+  lastupdate: number;
+  latitude: number;
+  longitude: number;
+  ownername: string;
+  tags: string;
+  displayDetail: boolean;
 }
 
 export interface OurImage {
@@ -52,10 +64,11 @@ export class FlickrService {
     }
     this.prevKeyword = criteria.keyword;
     const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-    const params = `api_key=${environment.flickr.key}&text=${criteria.keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${criteria.dateMin}&max_upload_date=${criteria.dateMax}&in_gallery=${criteria.gallery}&tags=${criteria.tags}`;
+    const params = `api_key=${environment.flickr.key}&text=${criteria.keyword}&format=json&nojsoncallback=1&per_page=12&page=${this.currPage}&safe_search=${this.safe}&min_upload_date=${criteria.dateMin}&max_upload_date=${criteria.dateMax}&in_gallery=${criteria.gallery}&tags=${criteria.tags}&extras=tags%2Cdate_taken%2Cowner_name%2Curl_q%2Curl_ms%2Cdescription%2Clicence%2Cdate_upload%2Cgeo%2Clast_update%2Cviews'`;
 
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];
+      console.log(res);
       res.photos.photo.forEach((ph: FlickrPhoto) => {
         const photoObj = {
           urlLink: `https://farm${ph.farm}.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}_b.jpg`,
@@ -63,7 +76,19 @@ export class FlickrService {
           title: ph.title,
           owner: ph.owner,
           secret: ph.secret,
-          id: ph.id
+          id: ph.id,
+          description: ph.description,
+          datetaken: ph.datetaken,
+          dateupload: ph.dateupload,
+          height_q: ph.height_q,
+          width_q: ph.width_q,
+          ispublic: ph.ispublic,
+          lastupdate: ph.lastupdate,
+          latitude: ph.latitude,
+          longitude: ph.longitude,
+          ownername: ph.ownername,
+          tags: ph.tags,
+          displayDetail: false
         };
         urlArr.push(photoObj);
       });

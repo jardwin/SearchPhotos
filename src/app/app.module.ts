@@ -9,6 +9,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SearchCriteriaComponent } from './search-criteria/search-criteria.component';
 import { ImagesListComponent } from './images-list/images-list.component';
 import { ImageDisplayComponent } from './image-display/image-display.component';
+import { ImageSliderComponent } from './image-slider/image-slider.component';
+import { ImageDetailComponent } from './image-detail/image-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ImageDisplayComponent } from './image-display/image-display.component';
     SearchImagesComponent,
     SearchCriteriaComponent,
     ImagesListComponent,
-    ImageDisplayComponent
+    ImageDisplayComponent,
+    ImageSliderComponent,
+    ImageDetailComponent
   ],
   imports: [
     BrowserModule,

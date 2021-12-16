@@ -1,0 +1,11 @@
+<center>
+    <div class="container">
+        <button (click)="prevImage()" class="btn">
+            < </button>
+                <img [src]="this.images[currentIndex].urlImg" (click)="this.images[currentIndex].displayDetail = !this.images[currentIndex].displayDetail">
+                <button (click)="nextImage()" class="btn">
+                    >
+                </button>
+    </div>
+    <app-image-detail [image]="this.images[currentIndex]"></app-image-detail>
+</center>
