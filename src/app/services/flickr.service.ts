@@ -56,7 +56,7 @@ export class FlickrService {
     } else {
       this.currPage = 1;
     }
-    if (criteria.nsfw == true) {
+    if (criteria.nsfw) {
       this.safe = 3;
     }
     else {
@@ -68,7 +68,6 @@ export class FlickrService {
 
     return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
       const urlArr = [];
-      console.log(res);
       res.photos.photo.forEach((ph: FlickrPhoto) => {
         const photoObj = {
           urlLink: `https://farm${ph.farm}.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}_b.jpg`,

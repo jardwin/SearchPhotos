@@ -1,9 +1,9 @@
 <center>
     <div class="container">
-        <button (click)="prevImage()" class="btn">
+        <button (click)="prevImage()" class="btn btn-secondary">
             < </button>
                 <img [src]="this.images[currentIndex].urlImg" (click)="this.images[currentIndex].displayDetail = !this.images[currentIndex].displayDetail">
-                <button (click)="nextImage()" class="btn">
+                <button (click)="nextImage()" class="btn  btn-secondary">
                     >
                 </button>
     </div>

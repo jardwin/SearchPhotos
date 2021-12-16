@@ -1,19 +1,29 @@
-<div class="form-group">
-    <input type="search" [(ngModel)]="criteria.keyword" class="form-control" placeholder="Search images">
+<div class="form-group mt-5 border border-dark rounded p-3">
+    <input type="search" [(ngModel)]="criteria.keyword" class="form-control" placeholder="Effectuez une recherche">
+    <p class="text-muted">Veuillez entrer un mot clé pour commencer</p>
+    <div class="d-flex justify-content-around mt-3">
+        <div>
+            <input type="checkbox" id="nsfw" [(ngModel)]="criteria.nsfw">
+            <label for="nsfw" class="ml-2 h4"> Recherche Safe 🍆🍑</label>
+        </div>
+        <div>
+            <input type="checkbox" id="gallery" [(ngModel)]="criteria.gallery">
+            <label for="gallery" class="ml-2 h4"> Appartient à une galerie</label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+        <div class="d-flex">
+            <label for="dateMin" class="h5 w-100">Date minimum : </label>
+            <input type="date" id="dateMin" [(ngModel)]="criteria.dateMin" class="form-control ml-2">
+        </div>
+        <div class="d-flex">
+            <label for="dateMax" class="h5 w-100"> Date maximum : </label>
+            <input type="date" id="dateMax" [(ngModel)]="criteria.dateMax" class="form-control ml-2">
+        </div>
+    </div>
+    <input type="search" [(ngModel)]="criteria.tags" class="form-control mt-3" placeholder="Liste de tags">
     <br>
-    <input type="checkbox" id="nsfw" [(ngModel)]="criteria.nsfw">
-    <label for="nsfw" class="ml-2"> Recherche Safe ?🍆🍑</label>
-    <br>
-    <input type="checkbox" id="gallery" [(ngModel)]="criteria.gallery">
-    <label for="gallery" class="ml-2">  Appartient a une galerie ?</label>
-    <br>
-    <input type="date" id="dateMin" [(ngModel)]="criteria.dateMin">
-    <label for="dateMin"> dateMin upload ?</label>
-    <br>
-    <input type="date" id="dateMax" [(ngModel)]="criteria.dateMax">
-    <label for="dateMax"> dateMax upload ?</label>
-    <br>
-    <input type="search" [(ngModel)]="criteria.tags" class="form-control" placeholder="Liste de tags (Optionnel)">
-    <br>  
-    <input class="btn btn-primary" type="submit" value="Recherche" (click)="submitSearch()">
 </div>
+<center>
+    <input class="btn btn-success mb-3 w-50" [disabled]="!criteria.keyword" type="submit" value="Recherche" (click)="submitSearch()">
+</center>
