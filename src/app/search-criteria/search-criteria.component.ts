@@ -8,37 +8,21 @@ import { FlickrService, OurImage } from '../services/flickr.service';
   styleUrls: ['./search-criteria.component.css']
 })
 export class SearchCriteriaComponent implements OnInit, OnChanges {
-  criteria: Criteria = { keyword: "", dateMax: null, dateMin: null, gallery: false, nsfw: false, tags:"" };
+  criteria: Criteria = { keyword: "", dateMax: null, dateMin: null, gallery: true, nsfw: true, tags:"" };
   @Output() onSearch = new EventEmitter<OurImage[]>();
   @Output() onNeedNext = new EventEmitter<OurImage[]>();
 
   constructor(private flickrService: FlickrService) { }
 
-  searchForm = new FormGroup({
-    title: new FormControl(),
-    nsfw: new FormControl(),
-    dateMin: new FormControl(),
-    dateMax: new FormControl(),
-    gallery: new FormControl(),
-    tags: new FormControl()
-  });
 
   @Input()
   IsNeedNext: boolean = false;
 
   submitSearch() {
-    console.log(this.searchForm.value);
-    this.criteria.keyword = this.searchForm.value.title.toLowerCase();
-    this.criteria.nsfw = this.searchForm.value.nsfw;
-    this.criteria.dateMax = this.searchForm.value.dateMax;
-    this.criteria.dateMin = this.searchForm.value.dateMin;
-    this.criteria.gallery = this.searchForm.value.gallery;
-    this.criteria.tags = this.searchForm.value.tags;
     console.log(this.criteria.keyword + "//" + this.criteria.nsfw + "//" + this.criteria.dateMax + "//" + this.criteria.dateMin + "//" + this.criteria.gallery);
     if (this.criteria.keyword && this.criteria.keyword.length > 0) {
       this.flickrService.search_keyword(this.criteria)
-        .toPromise()
-        .then(res => {
+        .subscribe(res => {
           console.log(res);
           this.onSearch.emit(res);
         });
@@ -46,6 +30,7 @@ export class SearchCriteriaComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+
   }
 
   ngOnChanges(changes: SimpleChanges) {

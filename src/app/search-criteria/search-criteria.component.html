@@ -1,19 +1,19 @@
 <div class="form-group">
-    <input type="search" [formControl]="searchForm.controls.title" class="form-control" placeholder="Search images">
+    <input type="search" [(ngModel)]="criteria.keyword" class="form-control" placeholder="Search images">
     <br>
-    <input type="checkbox" id="nsfw" [formControl]="searchForm.controls.nsfw" value="nsfw" checked>
-    <label for="nsfw"> Recherche Safe ?</label>
+    <input type="checkbox" id="nsfw" [(ngModel)]="criteria.nsfw">
+    <label for="nsfw" class="ml-2"> Recherche Safe ?🍆🍑</label>
     <br>
-    <input type="checkbox" id="gallery" [formControl]="searchForm.controls.gallery" value="gallery" checked>
-    <label for="gallery"> Appartient a un galerie ?</label>
+    <input type="checkbox" id="gallery" [(ngModel)]="criteria.gallery">
+    <label for="gallery" class="ml-2">  Appartient a une galerie ?</label>
     <br>
-    <input type="date" id="dateMin" [formControl]="searchForm.controls.dateMin">
+    <input type="date" id="dateMin" [(ngModel)]="criteria.dateMin">
     <label for="dateMin"> dateMin upload ?</label>
     <br>
-    <input type="date" id="dateMax" [formControl]="searchForm.controls.dateMax">
+    <input type="date" id="dateMax" [(ngModel)]="criteria.dateMax">
     <label for="dateMax"> dateMax upload ?</label>
     <br>
-    <input type="search" [formControl]="searchForm.controls.tags" class="form-control" placeholder="Liste de tags (Optionnel)">
-    <br>
-    <button type="submit" (click)="submitSearch()">Recherche</button>
+    <input type="search" [(ngModel)]="criteria.tags" class="form-control" placeholder="Liste de tags (Optionnel)">
+    <br>  
+    <input class="btn btn-primary" type="submit" value="Recherche" (click)="submitSearch()">
 </div>
